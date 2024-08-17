@@ -15,9 +15,10 @@ body {
   background-color: #222;
 
   animation:
-    timer 1s step-end forwards infinite paused;
-  --za: 0;
+    timer 0.1s step-end forwards infinite paused;
+  --za: 1;
   --zb: 0;
+  --value: calc(var(--za) + var(--zb) - 1);
 }
 
 main {
@@ -50,8 +51,9 @@ body:has(#a:checked ~ [for=a]:hover),
 body:has(#b:checked ~ [for=b]:hover) {
   animation-play-state: running;
 }
-main::after {
-  content: counter(countdown);
+main::before {
+  counter-set: value var(--value);
+  content: counter(value);
 }
 
 #a:not(:checked) ~ [for=a] {
@@ -63,15 +65,15 @@ main::after {
 }
 
 @keyframes timer {
-  0% { counter-increment: countdown 0; --za: 1 }
- 10% { counter-increment: countdown 1; --zb: 1 }
- 20% { counter-increment: countdown 2; --za: 2 }
- 30% { counter-increment: countdown 3; --zb: 2 }
- 40% { counter-increment: countdown 4; --za: 3 }
- 50% { counter-increment: countdown 5; --zb: 3 }
- 60% { counter-increment: countdown 6; --za: 4 }
- 70% { counter-increment: countdown 7; --zb: 4 }
- 80% { counter-increment: countdown 8; --za: 5 }
- 90% { counter-increment: countdown 9; --zb: 5 }
-100% { counter-increment: countdown 0; --za: 0; --zb: -1 }
+  0% { --za: 1 } /* Even though paused, --za is set here */
+ 10% { --zb: 1 }
+ 20% { --za: 2 }
+ 30% { --zb: 2 }
+ 40% { --za: 3 }
+ 50% { --zb: 3 }
+ 60% { --za: 4 }
+ 70% { --zb: 4 }
+ 80% { --za: 5 }
+ 90% { --zb: 5 }
+100% { --za: 0; --zb: 0 }
 }
