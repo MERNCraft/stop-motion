@@ -1,0 +1,77 @@
+:root {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #ddd;
+  background-color: #222;
+
+  animation:
+    timer 1s step-end forwards infinite paused;
+  --za: 0;
+  --zb: 0;
+}
+
+main {
+  position: relative;
+  width: 300px;
+  height: 150px;
+
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  background-color: #030;
+  overflow: hidden;
+
+  font-size: 50px
+}
+
+label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f003;
+}
+[for=b] {
+  background-color: #0f03;
+}
+body:has(#a:checked ~ [for=a]:hover),
+body:has(#b:checked ~ [for=b]:hover) {
+  animation-play-state: running;
+}
+main::after {
+  content: counter(countdown);
+}
+
+#a:not(:checked) ~ [for=a] {
+  z-index: var(--za);
+}
+
+#b:not(:checked) ~ [for=b] {
+  z-index: var(--zb);
+}
+
+@keyframes timer {
+  0% { counter-increment: countdown 0; --za: 1 }
+ 10% { counter-increment: countdown 1; --zb: 1 }
+ 20% { counter-increment: countdown 2; --za: 2 }
+ 30% { counter-increment: countdown 3; --zb: 2 }
+ 40% { counter-increment: countdown 4; --za: 3 }
+ 50% { counter-increment: countdown 5; --zb: 3 }
+ 60% { counter-increment: countdown 6; --za: 4 }
+ 70% { counter-increment: countdown 7; --zb: 4 }
+ 80% { counter-increment: countdown 8; --za: 5 }
+ 90% { counter-increment: countdown 9; --zb: 5 }
+100% { counter-increment: countdown 0; --za: 0; --zb: -1 }
+}
