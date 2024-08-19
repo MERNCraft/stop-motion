@@ -1,5 +1,7 @@
 # FAILED Proof of Concept #
 
+[Demo](https://MERNCraft.github.io/stop-motion)
+
 The idea was to create a counter with just two radio buttons, their labels, and a `@keyframes` animation.
 
 This works... but only on Firefox (last tested on v129.0.1). 
