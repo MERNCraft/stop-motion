@@ -33,7 +33,7 @@ main {
   background-color: #030;
   overflow: hidden;
 
-  font-size: 50px
+  font-size: 150px
 }
 
 label {
@@ -42,10 +42,6 @@ label {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f003;
-}
-[for=b] {
-  background-color: #0f03;
 }
 body:has(#a:checked ~ [for=a]:hover),
 body:has(#b:checked ~ [for=b]:hover) {
@@ -76,4 +72,59 @@ main::before {
  80% { --za: 5 }
  90% { --zb: 5 }
 100% { --za: 0; --zb: 0 }
+}
+
+p {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  margin: 0;
+  font-size: 35px;
+  color: #c60;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+a.refresh {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px 16px;
+  color: #ddd;
+  font-size: 16px;
+  text-decoration: none;
+  background-color: #060;
+  border: 1px outset #090;
+  border-radius: 8px;
+  z-index: 6;
+
+  &:hover {
+    color: #fff;
+  }
+  
+  &:hover:active {
+    border-style: inset;
+    background-color: #030;
+  }
+}
+
+/* Show the GitHub logo */
+a.github {
+  width: 0;
+  height: 0;
+
+  img {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 32px;
+    height: 32px;
+    filter: grayscale(1);
+    opacity: 0.25;
+    z-index: 6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
